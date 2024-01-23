@@ -36,7 +36,7 @@ pip install -r requirements.txt
 Run the script:
 
 ```bash
-python agent_manager.py
+python test_manager.py
 ```
 
 When prompted, enter your OAuth Bearer Token, which is obtained from your ThousandEyes user page in your dashboard. https://docs.thousandeyes.com/product-documentation/getting-started/getting-started-with-the-thousandeyes-api#authentication
