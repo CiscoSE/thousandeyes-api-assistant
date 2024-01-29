@@ -4,7 +4,7 @@ import requests
 class GoBackException(Exception):
     pass
 
-def get_tests(search_term, print_tests=True):
+def get_tests(search_term='', print_tests=True):
     if not search_term:
             search_term = input("Enter a search term for the name of the tests (or 'b' to go back): ")
     
