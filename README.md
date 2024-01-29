@@ -1,20 +1,26 @@
-# ThousandEyes Test Manager
+# ThousandEyes API Assistant
 
-This project provides an automated solution for managing tests or labels in the ThousandEyes platform through their API. The primary purpose of this script is to make the process of adding and removing agents from tests, or adding, removing and updating labels more efficient.
+This project provides an automated solution for managing various entities such as tests and labels in the ThousandEyes platform through their API. The primary purpose of this script is to make the process of managing these entities more efficient.
 
-The agent and test management processes can be a time-consuming task, especially when dealing with a large number of tests and agents. This script simplifies the process by automating it. 
+## Features
 
-You can manage agents for different types of tests in the ThousandEyes platform (currently only http-server & dns-server types). It allows you to search for a list of tests by name. Then it retrieves the test details, displays the agents for each test, and allows you to add or remove agents.
+Currently, the script supports managing agents for different types of tests in the ThousandEyes platform. It allows you to:
 
-You can also create, delete, or update labels.
+- Search for a list of tests by name.
+- Retrieve and display the test details, along with the associated agents.
+- Add or remove agents from the tests.
+
+In the future, it will also support managing labels (creating, deleting, updating). This functionality is currently under development.
 
 ## Technology Stack
 
-The scripts are written in Python and use the requests module to interact with the ThousandEyes API. The scripts are intended to be used as standalone programs.
+The script is written in Python and uses the requests module to interact with the ThousandEyes API.
 
 ## Status
 
-The current version is 1.0.
+The current version is 1.1. This version introduces several code improvements to make the script more modular and easier to maintain.
+
+Label management functionality is planned for version 1.2.
 
 ## Installation 
 
@@ -35,21 +41,20 @@ pip install -r requirements.txt
 
 ## Usage 
 
-Run the scripts:
+Run the script:
 
 ```bash
-python test_manager.py
-```
-
-or
-
-```bash
-python label_manager.py
+python main.py
 ```
 
 When prompted, enter your OAuth Bearer Token, which is obtained from your ThousandEyes user page in your dashboard. https://docs.thousandeyes.com/product-documentation/getting-started/getting-started-with-the-thousandeyes-api#authentication
 
-Enter a search term to search for the name of the tests or the labels you want to change. After the tests and their agents or the labels and their objects are displayed, choose whether you want to add or remove by entering 'add' or 'remove'. Then, enter the ID of the item you would like to add or remove from the tests or from the label you choose.
+Choose 1 to manage tests.
+
+From the Test Management menu choose 1 to get a list of your tests or 4 to update your tests (create and deleting tests will be future functionality).
+
+
+Enter a search term to search for the name of the tests you want to update. After the tests and their agents or the labels and their objects are displayed, choose whether you want to add or remove by entering 'add' or 'remove'. Then, enter the ID of the agent you would like to add or remove from the tests.
 
 ## Known issues 
 
