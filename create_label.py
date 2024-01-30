@@ -1,6 +1,5 @@
 import os
 import requests
-from update_label import update_label
 from config import base_url
 
 def create_label():
@@ -35,15 +34,5 @@ def create_label():
     if response.status_code == 201:  # 201 Created is standard response for successful HTTP POST requests
         label = response.json()['groups'][0]
         print(f"Label '{label['name']}' created successfully. ID: {label['groupId']}, Type: {label['type']}")
-        print("Enter 'u' to update this label, or 'b' to go back to the label manager.")
-        while True:
-            next_action = input("Enter your choice: ")
-            if next_action.lower() == 'b':
-                return
-            elif next_action.lower() == 'u':
-                update_label(label['groupId'])
-                break
-            else:
-                print("Invalid choice. Please enter 'u' or 'b'.")
     else:
         print("Error creating label: received status code", response.status_code)
