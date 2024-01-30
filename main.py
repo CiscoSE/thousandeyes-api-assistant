@@ -9,12 +9,13 @@ def select_option():
     print("Select the option you want to perform")
     print("1. Manage Tests")
     print("2. Manage Labels")
-    print("3. Other")
+    print("3. Future...")
+    print("4. Exit")
     option = int(input("Enter the option number: "))
     return option
 
 def main():
-    print("Welcome to the ThousandEyes API program!")
+    print("Welcome to the ThousandEyes API Assistant!")
     get_oauth_token()
 
     while True:
@@ -29,6 +30,9 @@ def main():
             elif option == 3:
                 # Here import and call other functions
                 pass
+            elif option == 4:
+                print("Exiting program...")
+                break
             else:
                 print("Invalid option selected")
         except Exception as e:

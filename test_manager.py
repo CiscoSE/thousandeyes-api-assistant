@@ -9,6 +9,7 @@ def manage_tests():
     print("2. Create a test")
     print("3. Delete a test")
     print("4. Update a test")
+    print("5. Go back to main menu")
 
     option = int(input("Enter the option number: "))
     
@@ -21,7 +22,9 @@ def manage_tests():
             delete_test()
         elif option == 4:
             update_tests()
+        elif option == 5:
+            raise GoBackException("Return to main menu")
         else:
             print("Invalid option selected")
     except GoBackException:
-        manage_tests()
+        raise GoBackException("Return to main menu")

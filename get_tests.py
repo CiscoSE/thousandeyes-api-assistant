@@ -28,7 +28,7 @@ def get_tests(search_term='', print_tests=True):
         if matching_tests:
             print("Tests matching search term:")
             for test in matching_tests:
-                print(f"{test['testName']} (Type: {test['type']})")
+                print(f"{test['testName']} (ID: {test['testId']}) (Type: {test['type']})")
         else:
             print("No tests found matching search term")
         return []
