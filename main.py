@@ -1,5 +1,6 @@
 import os
 from test_manager import manage_tests
+from label_manager import manage_labels
 
 def get_oauth_token():
     oauth_token = input("Please enter your OAuth Bearer Token: ")
@@ -25,8 +26,8 @@ def main():
                 # Import and call the function to Manage Tests
                 manage_tests()
             elif option == 2:
-                # Here import and call the function related to Manage Labels
-                pass
+                # Iport and call the function related to Manage Labels
+                manage_labels()
             elif option == 3:
                 # Here import and call other functions
                 pass
