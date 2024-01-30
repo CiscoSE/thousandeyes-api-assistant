@@ -13,15 +13,22 @@ def manage_labels():
         print("5. Go back to the main menu")
         choice = input("Enter your choice: ")
 
-        if choice == '1':
-            get_labels()
-        elif choice == '2':
-            create_label()
-        elif choice == '3':
-            delete_label()
-        elif choice == '4':
-            update_label()
-        elif choice == '5':
-            break  # Exit the loop to go back to the main menu
-        else:
-            print("Invalid choice. Please enter a number between 1 and 5.")
+        try:
+            if choice == '1':
+                get_labels()
+            elif choice == '2':
+                create_label()
+            elif choice == '3':
+                delete_label()
+            elif choice == '4':
+                update_label()
+            elif choice == '5':
+                break  # Exit the loop to go back to the main menu
+            else:
+                print("Invalid choice. Please enter a number between 1 and 5.")
+        except Exception as e:
+            if str(e) == "Return to previous menu":
+                print("Returning to the previous menu...")
+                break
+            else:
+                raise e

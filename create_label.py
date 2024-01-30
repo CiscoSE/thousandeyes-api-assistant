@@ -13,7 +13,7 @@ def create_label():
     while True:
         type_choice = input("Enter your choice (or 'b' to go back): ")
         if type_choice.lower() == 'b':
-            raise Exception("Return to main menu")  # Raise an exception to go back to the main menu
+            return  # Return to the previous menu
         try:
             label_type = label_types[int(type_choice) - 1]
             break
@@ -34,11 +34,11 @@ def create_label():
     if response.status_code == 201:  # 201 Created is standard response for successful HTTP POST requests
         label = response.json()['groups'][0]
         print(f"Label '{label['name']}' created successfully. ID: {label['groupId']}, Type: {label['type']}")
-        print("Enter 'u' to update this label, or 'b' to go back to the main menu.")
+        print("Enter 'u' to update this label, or 'b' to go back to the label manager.")
         while True:
             next_action = input("Enter your choice: ")
             if next_action.lower() == 'b':
-                raise Exception("Return to main menu")
+                return
             elif next_action.lower() == 'u':
                 update_label(label['groupId'])
                 break
