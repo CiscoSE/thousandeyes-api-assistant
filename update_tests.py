@@ -6,6 +6,7 @@ import concurrent.futures
 import itertools
 import threading
 import time
+from config import base_url
 
 class LoadingIndicator: # The API is a bit slow when updating tests, so this creates a simple Loading indicator
 
@@ -35,7 +36,7 @@ class LoadingIndicator: # The API is a bit slow when updating tests, so this cre
 
 def update_test(test, agent_id, action, headers):
     test_id = test['testId']
-    response = requests.get(f'https://api.thousandeyes.com/v6/tests/{test_id}.json', headers=headers)
+    response = requests.get(f'{base_url}tests/{test_id}.json', headers=headers)
     if response.status_code != 200:
         print(f"Error getting details for test {test_id}: received status code", response.status_code)
         return
@@ -58,7 +59,7 @@ def update_test(test, agent_id, action, headers):
     }
 
     test_type = test['type']
-    response = requests.post(f'https://api.thousandeyes.com/v6/tests/{test_type}/{test_id}/update.json', headers=headers, data=json.dumps(body))
+    response = requests.post(f'{base_url}tests/{test_type}/{test_id}/update.json', headers=headers, data=json.dumps(body))
 
     if response.status_code != 200:
         print(f"Error updating test {test_id}: received status code", response.status_code)
@@ -86,7 +87,7 @@ def update_tests():
         print("Matching tests and their agents:")
         for test in matching_tests:
             test_id = test['testId']
-            response = requests.get(f'https://api.thousandeyes.com/v6/tests/{test_id}.json', headers=headers)
+            response = requests.get(f'{base_url}tests/{test_id}.json', headers=headers)
             if response.status_code != 200:
                 print(f"Error getting details for test {test_id}: received status code", response.status_code)
                 continue

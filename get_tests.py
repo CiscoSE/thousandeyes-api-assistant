@@ -1,5 +1,6 @@
 import os
 import requests
+from config import base_url
 
 class GoBackException(Exception):
     pass
@@ -14,7 +15,7 @@ def get_tests(search_term='', print_tests=True):
     headers = {
         'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
     }
-    response = requests.get('https://api.thousandeyes.com/v6/tests.json', headers=headers)
+    response = requests.get(f'{base_url}/tests.json', headers=headers)
     
     if response.status_code != 200:
         print("Error making request: received status code", response.status_code)

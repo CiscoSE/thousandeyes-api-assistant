@@ -1,5 +1,6 @@
 import os
 import requests
+from config import base_url
 
 class GoBackException(Exception):
     pass
@@ -14,7 +15,7 @@ def get_labels(search_term='', print_labels=True):
     headers = {
         'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
     }
-    response = requests.get('https://api.thousandeyes.com/v6/groups.json', headers=headers)
+    response = requests.get(f'{base_url}/groups.json', headers=headers)
     
     if response.status_code != 200:
         print("Error making request: received status code", response.status_code)

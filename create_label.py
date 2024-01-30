@@ -1,6 +1,7 @@
 import os
 import requests
 from update_label import update_label
+from config import base_url
 
 def create_label():
     # List of supported label types
@@ -29,7 +30,7 @@ def create_label():
     data = {
         'name': label_name,
     }
-    response = requests.post(f"https://api.thousandeyes.com/v6/groups/{label_type}/new.json", headers=headers, json=data)
+    response = requests.post(f"{base_url}/groups/{label_type}/new.json", headers=headers, json=data)
 
     if response.status_code == 201:  # 201 Created is standard response for successful HTTP POST requests
         label = response.json()['groups'][0]

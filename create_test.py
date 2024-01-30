@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+from config import base_url
 
 def create_test():
     test_types = [
@@ -88,7 +89,7 @@ def create_test():
         'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
         'Content-Type': 'application/json'
     }
-    response = requests.post(f'https://api.thousandeyes.com/v6/tests/{test_type}/new.json', headers=headers, data=json.dumps(test_attributes))
+    response = requests.post(f'{base_url}/tests/{test_type}/new.json', headers=headers, data=json.dumps(test_attributes))
 
     if response.status_code != 201:
         print("Error making request: received status code", response.status_code)

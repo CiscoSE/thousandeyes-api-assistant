@@ -1,13 +1,14 @@
 import os
 import requests
 from get_labels import get_labels
+from config import base_url
 
 def get_label_details(groupId):
     headers = {
         'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
         'Content-Type': 'application/json',
     }
-    response = requests.get(f"https://api.thousandeyes.com/v6/groups/{groupId}.json", headers=headers)
+    response = requests.get(f"{base_url}/groups/{groupId}.json", headers=headers)
     return response.json()['groups'][0]
 
 def delete_label():
@@ -63,7 +64,7 @@ def delete_label():
             'Content-Type': 'application/json',
         }
 
-        response = requests.post(f"https://api.thousandeyes.com/v6/groups/{label_id}/delete.json", headers=headers)
+        response = requests.post(f"{base_url}/groups/{label_id}/delete.json", headers=headers)
 
         if response.status_code == 204:
             print("Label deleted successfully.")

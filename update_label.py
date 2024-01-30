@@ -1,13 +1,14 @@
 import os
 import requests
 from get_labels import get_labels
+from config import base_url
 
 def get_label_details(groupId):
     headers = {
         'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
         'Content-Type': 'application/json',
     }
-    response = requests.get(f"https://api.thousandeyes.com/v6/groups/{groupId}.json", headers=headers)
+    response = requests.get(f"{base_url}/groups/{groupId}.json", headers=headers)
     return response.json()['groups'][0]
 
 def update_label():
@@ -121,7 +122,7 @@ def update_label():
             object_type: objects
         }
 
-        response = requests.post(f"https://api.thousandeyes.com/v6/groups/{label_id}/update.json", headers=headers, json=data)
+        response = requests.post(f"{base_url}/groups/{label_id}/update.json", headers=headers, json=data)
 
         if response.status_code == 200:
             print("Label updated successfully.")

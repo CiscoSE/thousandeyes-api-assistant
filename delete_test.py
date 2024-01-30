@@ -1,6 +1,7 @@
 import os
 import requests
 from get_tests import get_tests, GoBackException
+from config import base_url
 
 def delete_test():
     while True:
@@ -27,13 +28,13 @@ def delete_test():
         headers = {
             'Authorization': 'Bearer ' + os.environ['OAUTH_TOKEN'],
         }
-        response = requests.get(f"https://api.thousandeyes.com/v6/tests/{delete_choice}.json", headers=headers)
+        response = requests.get(f"{base_url}/v6/tests/{delete_choice}.json", headers=headers)
         if response.status_code == 200:  # 200 OK means the request was successful
             test_details = response.json()
             test_type = test_details['test'][0]['type']
 
             # Delete the test
-            response = requests.delete(f"https://api.thousandeyes.com/v6/tests/{test_type}/{delete_choice}/delete.json", headers=headers)
+            response = requests.delete(f"{base_url}/v6/tests/{test_type}/{delete_choice}/delete.json", headers=headers)
             if response.status_code == 204:  # 204 No Content is standard response for successful HTTP DELETE requests
                 print(f"Test with ID {delete_choice} deleted successfully.")
             else:
