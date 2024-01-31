@@ -78,12 +78,12 @@ def update_label():
 
         while True:
             object_search_again = False
-            object_id = input("Enter the ID of the object you want to " + update_action + " (or 's' to do another search): ")
-            if object_id.lower() == 's':
+            object_ids_input = input("Enter the IDs of the objects you want to " + update_action + " (comma-separated, or 's' to do another search): ")
+            if object_ids_input.lower() == 's':
                 object_search_again = True
                 break  # Break the inner loop to go back to the start of the outer loop
             try:
-                object_id = int(object_id)
+                object_ids = [int(object_id.strip()) for object_id in object_ids_input.split(',')]
                 break
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -110,12 +110,14 @@ def update_label():
             objects = [{"dashboardId": obj['dashboardId']} for obj in label['dashboards']]
 
         if update_action == 'add':
-            if object_type in ['tests', 'endpoint-tests']:
-                objects.append({'testId': object_id})
-            else:
-                objects.append({'agentId': object_id})
+            for object_id in object_ids:
+                if object_type in ['tests', 'endpoint-tests']:
+                    objects.append({'testId': object_id})
+                else:
+                    objects.append({'agentId': object_id})
         else:
-            objects = [obj for obj in objects if list(obj.values())[0] != object_id]
+            for object_id in object_ids:
+                objects = [obj for obj in objects if list(obj.values())[0] != object_id]
 
         data = {
             'name': label['name'],  # Include the label name in the request body
